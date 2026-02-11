@@ -85,9 +85,16 @@ Use real multiline content instead (file/variable payload), then send JSON args 
 
 > 英文 scope 名称会随 API/版本变化，请在开放平台权限页按 API 提示逐项勾选，并通过一次真实调用回归验证。
 
-## Related references
+## 中文快速上手（3 分钟）
 
-- Lark Docs style reference: https://skills.sh/serendipityoneinc/srp-claude-code-marketplace/lark-docs
+1. 在飞书开放平台创建/选择一个企业自建应用。
+2. 在应用中开通 MCP 远程调用能力（以控制台实际入口为准）。
+3. 按最小权限原则开启文档读写相关权限并发布版本。
+4. 获取 MCP Server URL（`mcpServers` 配置）。
+5. 本地用 `mcporter` 验证：先 `get-user`，再 `create-doc`、`update-doc`、`fetch-doc`。
+6. 写入时始终用“真实多行 markdown”，不要传 `\n` 字符串。
+
+通过以上 6 步后，即可稳定执行 PRD 写入与回读校验流程。
 
 ## License
 
