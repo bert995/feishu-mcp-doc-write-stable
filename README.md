@@ -52,6 +52,39 @@ Use real multiline content instead (file/variable payload), then send JSON args 
 
 - `SKILL.md` — operational instructions for the agent
 
+## Feishu MCP 开通流程（给最终用户）
+
+参考官方文档：
+- https://open.larkoffice.com/document/mcp_open_tools/end-user-call-remote-mcp-server
+
+推荐最小流程：
+
+1. 在飞书开放平台创建/选择应用（企业自建应用）。
+2. 在应用里开启 MCP 相关能力（Remote MCP，Beta 能力以控制台实际入口为准）。
+3. 配置并发布可调用的 MCP Server（拿到 `mcpServers` URL）。
+4. 用终端工具（如 `mcporter`）完成用户授权并验证工具列表。
+5. 先做最小可用验证：`get-user` -> `create-doc` -> `update-doc` -> `fetch-doc`。
+6. 验证通过后再接入完整 PRD 工作流。
+
+> 注意：不同租户、版本和灰度策略下，控制台入口名称会有差异，请以官方控制台与文档为准。
+
+## 飞书应用权限建议（最小可用集）
+
+按“最小权限原则”只开你实际用到的范围。若你需要本技能完整流程（创建/写入/读取文档），通常至少需要：
+
+- 云文档读权限（读取内容、校验回读）
+- 云文档写权限（创建与更新正文）
+- 云文档块转换/渲染相关权限（如 markdown 转块）
+- 云空间/云盘相关权限（文档创建与目录挂载场景）
+
+若需要扩展能力，再按需增加：
+
+- Wiki 读取/写入（知识库场景）
+- 评论读取/写入（评审流）
+- 用户信息查询（`search-user` / `get-user` / @提及）
+
+> 英文 scope 名称会随 API/版本变化，请在开放平台权限页按 API 提示逐项勾选，并通过一次真实调用回归验证。
+
 ## Related references
 
 - Lark Docs style reference: https://skills.sh/serendipityoneinc/srp-claude-code-marketplace/lark-docs
